@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <section></section>
+      <section className={"h-[200vh]"}></section>
     </>
   );
 }
