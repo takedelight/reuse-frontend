@@ -45,7 +45,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
       lang={locale}
       suppressHydrationWarning
       className={cn(
-        "h-full",
+        "h-full dark",
         locale === "en" ? spaceGrotesk.variable : onest.variable,
         fontClass,
       )}

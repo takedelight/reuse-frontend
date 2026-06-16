@@ -7,6 +7,8 @@ import { HeaderDrawer } from "@/src/widgets/header/ui/HeaderDrawer";
 import { ToggleTheme } from "@/src/widgets/header/ui/ToggleTheme";
 import { useTranslations } from "next-intl";
 
+import { ToggleLanguage } from "@/src/features/toggle-language";
+import { PAGES_CONFIG } from "@/src/shared/configs/pages";
 import { Link } from "@/src/shared/i18n";
 import { useEffect, useState } from "react";
 
@@ -28,14 +30,17 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 px-2 z-50 py-4">
+    <header className="sticky top-0  z-50 py-4">
       <nav
         className={cn(
-          "container  py-3 transition-all ease-in-out border border-foreground/10 bg-background/60 backdrop-blur-2xl rounded-2xl mx-auto px-2 flex items-center justify-between",
+          "container  py-3 transition-all ease-in-out border border-foreground/10 bg-background/60 backdrop-blur-3xl px-4 opacity-80 rounded-2xl mx-auto flex items-center justify-between",
           isScrolled && "sm:w-200",
         )}
       >
-        <Link href="/" className="font-bold text-xl tracking-wide group">
+        <Link
+          href={PAGES_CONFIG.HOME}
+          className="font-bold text-xl tracking-wide group"
+        >
           <span className="text-primary transition-colors">re</span>
           <span className="text-muted-foreground mx-0.5 transition-colors">
             :
@@ -63,10 +68,12 @@ export const Header = () => {
         </ul>
 
         <div className="flex items-center gap-2">
+          <ToggleLanguage />
+
           <ToggleTheme />
 
           <Button variant="ghost" className="hidden lg:flex" asChild>
-            <Link href={"/login"}>{t("auth.links.login")}</Link>
+            <Link href={PAGES_CONFIG.AUTH.LOGIN}>{t("auth.links.login")}</Link>
           </Button>
 
           <HeaderDrawer />

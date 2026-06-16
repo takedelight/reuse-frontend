@@ -1,3 +1,4 @@
+import { PAGES_CONFIG } from "@/src/shared/configs/pages";
 import {
   RiArchiveStackLine,
   RiArticleLine,
@@ -17,13 +18,13 @@ interface DrawerLink {
 export const DRAWER_ACCOUNT_LINKS: DrawerLink[] = [
   {
     key: "header.account_nav.links.profile",
-    href: "/profile",
+    href: PAGES_CONFIG.PROFILE.HOME,
     icon: RiUserLine,
   },
 
   {
     key: "header.account_nav.links.settings",
-    href: "/settings",
+    href: PAGES_CONFIG.PROFILE.SETTINGS,
     icon: RiSettings3Line,
   },
 ];
@@ -31,22 +32,22 @@ export const DRAWER_ACCOUNT_LINKS: DrawerLink[] = [
 export const HEADER_NAV_LINKS = [
   {
     key: "header.nav.links.library",
-    href: "/library",
+    href: PAGES_CONFIG.LIBRARY,
     icon: RiArchiveStackLine,
   },
   {
     key: "header.nav.links.learn",
-    href: "/learn",
+    href: PAGES_CONFIG.LEARN,
     icon: RiBookOpenLine,
   },
   {
     key: "header.nav.links.quiz",
-    href: "/quiz",
+    href: PAGES_CONFIG.QUIZ,
     icon: RiTestTubeLine,
   },
   {
     key: "header.nav.links.blog",
-    href: "/blog",
+    href: PAGES_CONFIG.BLOG,
     icon: RiArticleLine,
   },
 ];

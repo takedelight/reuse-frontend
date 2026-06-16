@@ -22,6 +22,7 @@ import {
   DrawerTrigger,
 } from "@/src/shared/ui";
 
+import { PAGES_CONFIG } from "@/src/shared/configs/pages";
 import { DrawerClose } from "@/src/shared/ui/drawer";
 import { Label } from "@/src/shared/ui/label";
 import { Switch } from "@/src/shared/ui/switch";
@@ -207,11 +208,15 @@ export const HeaderDrawer = () => {
           ) : (
             <div className="flex flex-col gap-2">
               <Button asChild>
-                <Link href="/login">{t("auth.links.login")}</Link>
+                <Link href={PAGES_CONFIG.AUTH.LOGIN}>
+                  {t("auth.links.login")}
+                </Link>
               </Button>
 
               <Button variant="outline" asChild>
-                <Link href="/register">{t("auth.links.register")}</Link>
+                <Link href={PAGES_CONFIG.AUTH.REGISTER}>
+                  {t("auth.links.register")}
+                </Link>
               </Button>
             </div>
           )}
