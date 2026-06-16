@@ -1,5 +1,38 @@
 {
-  "HomePage": {
-    "title": "uk"
+  "header": {
+    "nav": {
+      "title": "Навігація",
+      "links": {
+        "library": "Бібліотека",
+        "blog": "Блог",
+        "learn": "База знань",
+        "quiz": "Тести"
+      }
+    },
+    "account_nav": {
+      "title": "Акаунт",
+      "links": {
+        "profile": "Профіль",
+        "favorites": "Улюблене",
+        "settings": "Налаштування",
+        "messages": "Повідомлення"
+      }
+    },
+    "drawer": {
+      "header": {
+        "title": "Ласкаво просимо до re:use",
+        "subtitle": "Приєднуйтесь до нашої спільноти"
+      },
+      "appereance": {
+        "title": "Зовнішній вигляд",
+        "text": "Світла / темна тема"
+      }
+    }
+  },
+  "auth": {
+    "links": {
+      "login": "Вхід",
+      "register": "Зареєструватися"
+    }
   }
 }

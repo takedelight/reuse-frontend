@@ -1,14 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import {
-  RiMenuLine,
   RiCloseLine,
   RiLogoutBoxRLine,
+  RiMenuLine,
   RiMoonClearLine,
-  RiUserLine,
 } from "@remixicon/react";
+import Link from "next/link";
+import { useState } from "react";
 
 import { useTheme } from "next-themes";
 
@@ -30,6 +29,7 @@ import {
   DRAWER_ACCOUNT_LINKS,
   HEADER_NAV_LINKS,
 } from "@/src/widgets/header/model/const";
+import { useTranslations } from "next-intl";
 
 const mockUser = {
   id: "usr_9481024",
@@ -42,6 +42,8 @@ const mockUser = {
 const islogb = false;
 
 export const HeaderDrawer = () => {
+  const t = useTranslations();
+
   const { setTheme } = useTheme();
 
   const [isOpen, setOpen] = useState(false);
@@ -84,15 +86,12 @@ export const HeaderDrawer = () => {
               </div>
             ) : (
               <div className="flex items-center gap-3">
-                <div className="bg-foreground/5 flex size-11 items-center justify-center rounded-xl border border-foreground/5 text-muted-foreground">
-                  <RiUserLine className="size-5" />
-                </div>
                 <div className="flex flex-col text-left">
                   <span className="font-semibold text-foreground text-sm tracking-wide">
-                    Welcome to re:use
+                    {t("header.drawer.header.title")}
                   </span>
                   <span className="text-xs text-muted-foreground font-medium">
-                    Join our community
+                    {t("header.drawer.header.subtitle")}
                   </span>
                 </div>
               </div>
@@ -108,7 +107,7 @@ export const HeaderDrawer = () => {
         <nav className="flex-1 overflow-y-auto p-4">
           <div className="mb-6">
             <span className="text-muted-foreground block mb-2 px-3 text-xs font-medium uppercase tracking-wider">
-              Account
+              {t("header.account_nav.title")}
             </span>
 
             <ul className="flex flex-col gap-1">
@@ -125,7 +124,7 @@ export const HeaderDrawer = () => {
                       <DrawerClose asChild>
                         <Link href={link.href}>
                           <Icon className="size-4" />
-                          {link.alias}
+                          {t(link.key)}
                         </Link>
                       </DrawerClose>
                     </Button>
@@ -137,7 +136,7 @@ export const HeaderDrawer = () => {
 
           <div>
             <span className="text-muted-foreground block mb-2 px-3 text-xs font-medium uppercase tracking-wider">
-              Explore
+              {t("header.nav.title")}
             </span>
 
             <ul className="flex flex-col gap-1">
@@ -154,7 +153,7 @@ export const HeaderDrawer = () => {
                       <DrawerClose asChild>
                         <Link href={link.href}>
                           <Icon className="size-4" />
-                          {link.alias}
+                          {t(link.key)}
                         </Link>
                       </DrawerClose>
                     </Button>
@@ -176,10 +175,12 @@ export const HeaderDrawer = () => {
               </div>
 
               <div className="flex flex-col">
-                <span className="text-sm font-medium">Appearance</span>
+                <span className="text-sm font-medium">
+                  {t("header.drawer.appereance.title")}
+                </span>
 
                 <span className="text-muted-foreground text-xs">
-                  Light / Dark theme
+                  {t("header.drawer.appereance.text")}
                 </span>
               </div>
             </div>
@@ -199,16 +200,16 @@ export const HeaderDrawer = () => {
           {islogb ? (
             <Button variant="destructive" className="w-full gap-2">
               <RiLogoutBoxRLine className="size-4" />
-              Sign Out
+              {t("auth.links.logout")}
             </Button>
           ) : (
             <div className="flex flex-col gap-2">
               <Button asChild>
-                <Link href="/login">Sign In</Link>
+                <Link href="/login">{t("auth.links.login")}</Link>
               </Button>
 
               <Button variant="outline" asChild>
-                <Link href="/register">Create Account</Link>
+                <Link href="/register">{t("auth.links.register")}</Link>
               </Button>
             </div>
           )}

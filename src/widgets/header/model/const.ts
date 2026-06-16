@@ -1,39 +1,28 @@
 import {
   RiArchiveStackLine,
+  RiArticleLine,
   RiBookOpenLine,
+  RiSettings3Line,
   RiTestTubeLine,
   RiUserLine,
-  RiHeartLine,
-  RiChat3Line,
-  RiSettings3Line,
-  RiArticleLine,
   type RemixiconComponentType,
 } from "@remixicon/react";
 
 interface DrawerLink {
-  alias: string;
+  key: string;
   href: string;
   icon: RemixiconComponentType;
 }
 
 export const DRAWER_ACCOUNT_LINKS: DrawerLink[] = [
   {
-    alias: "Profile",
+    key: "header.account_nav.links.profile",
     href: "/profile",
     icon: RiUserLine,
   },
+
   {
-    alias: "Favorites",
-    href: "/favorites",
-    icon: RiHeartLine,
-  },
-  {
-    alias: "Messages",
-    href: "/messages",
-    icon: RiChat3Line,
-  },
-  {
-    alias: "Settings",
+    key: "header.account_nav.links.settings",
     href: "/settings",
     icon: RiSettings3Line,
   },
@@ -41,22 +30,22 @@ export const DRAWER_ACCOUNT_LINKS: DrawerLink[] = [
 
 export const HEADER_NAV_LINKS = [
   {
-    alias: "Resources",
-    href: "/resources",
+    key: "header.nav.links.library",
+    href: "/library",
     icon: RiArchiveStackLine,
   },
   {
-    alias: "Learn",
+    key: "header.nav.links.learn",
     href: "/learn",
     icon: RiBookOpenLine,
   },
   {
-    alias: "Practice",
-    href: "/practice",
+    key: "header.nav.links.quiz",
+    href: "/quiz",
     icon: RiTestTubeLine,
   },
   {
-    alias: "Blog",
+    key: "header.nav.links.blog",
     href: "/blog",
     icon: RiArticleLine,
   },

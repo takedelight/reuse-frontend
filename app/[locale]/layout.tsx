@@ -38,11 +38,17 @@ export default async function RootLayout({ children, params }: LayoutProps) {
     notFound();
   }
 
+  const fontClass = locale === "en" ? "font-space-grotesk" : "font-onest";
+
   return (
     <html
       lang={locale}
       suppressHydrationWarning
-      className={cn("h-full", spaceGrotesk.variable, onest.variable)}
+      className={cn(
+        "h-full",
+        locale === "en" ? spaceGrotesk.variable : onest.variable,
+        fontClass,
+      )}
     >
       <body className="min-h-full    flex flex-col">
         <ThemeProvider

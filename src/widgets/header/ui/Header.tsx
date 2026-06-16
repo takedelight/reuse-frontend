@@ -1,17 +1,17 @@
 "use client";
 
-import { ToggleTheme } from "@/src/widgets/header/ui/ToggleTheme";
-import Link from "next/link";
-import { Button } from "@/src/shared/ui/button";
-import { useEffect, useState } from "react";
 import { cn } from "@/src/shared/lib";
-import { HeaderDrawer } from "@/src/widgets/header/ui/HeaderDrawer";
+import { Button } from "@/src/shared/ui/button";
 import { HEADER_NAV_LINKS } from "@/src/widgets/header/model/const";
-
-const LINKS = ["Link 1", "Link 2", "Link 3", "Link 4"];
+import { HeaderDrawer } from "@/src/widgets/header/ui/HeaderDrawer";
+import { ToggleTheme } from "@/src/widgets/header/ui/ToggleTheme";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const t = useTranslations();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,13 +47,13 @@ export const Header = () => {
             const Icon = link.icon;
 
             return (
-              <li key={link.alias} className="relative group list-none">
+              <li key={link.key} className="relative group list-none">
                 <Link
                   className="text-foreground/80 flex items-center gap-1 hover:text-primary  transition-colors ease-in-out  py-1"
                   href={link.href}
                 >
                   <Icon className="size-4" />
-                  {link.alias}
+                  {t(link.key)}
                 </Link>
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100 origin-center"></span>
               </li>
@@ -65,7 +65,7 @@ export const Header = () => {
           <ToggleTheme />
 
           <Button variant="ghost" className="hidden lg:flex" asChild>
-            <Link href={"/login"}>Login</Link>
+            <Link href={"/login"}>{t("auth.links.login")}</Link>
           </Button>
 
           <HeaderDrawer />

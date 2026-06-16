@@ -1,5 +1,38 @@
 {
-  "HomePage": {
-    "title": "en"
+  "header": {
+    "nav": {
+      "title": "Navigation",
+      "links": {
+        "library": "Library",
+        "blog": "Blog",
+        "learn": "Learn",
+        "quiz": "Quiz"
+      }
+    },
+    "account_nav": {
+      "title": "Account",
+      "links": {
+        "profile": "Profile",
+        "favorites": "Favorites",
+        "settings": "Settings",
+        "messages": "Messages"
+      }
+    },
+    "drawer": {
+      "header": {
+        "title": "Welcome to re:use",
+        "subtitle": "Join our community"
+      },
+      "appereance": {
+        "title": "Appearance",
+        "text": "Light / dark theme"
+      }
+    }
+  },
+  "auth": {
+    "links": {
+      "login": "Sign in",
+      "register": "Sign up"
+    }
   }
 }
