@@ -108,7 +108,7 @@ export const HeaderDrawer = () => {
         <nav className="flex-1 overflow-y-auto p-4">
           {islogb && (
             <div className="mb-6">
-              <span className="text-muted-foreground block mb-2 px-3 text-xs font-medium uppercase tracking-wider">
+              <span className="text-xs font-bold uppercase tracking-wider text-foreground/50">
                 {t("header.account_nav.title")}
               </span>
 
@@ -138,7 +138,7 @@ export const HeaderDrawer = () => {
           )}
 
           <div>
-            <span className="text-muted-foreground block mb-2 px-3 text-xs font-medium uppercase tracking-wider">
+            <span className="text-xs font-bold uppercase tracking-wider text-foreground/50">
               {t("header.nav.title")}
             </span>
 

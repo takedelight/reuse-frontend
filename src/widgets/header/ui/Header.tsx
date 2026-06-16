@@ -30,7 +30,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="sticky top-0  z-50 py-4">
+    <header className="sticky top-0 px-1 z-50 py-4">
       <nav
         className={cn(
           "container  py-3 transition-all ease-in-out border border-foreground/10 bg-background/60 backdrop-blur-3xl px-4 opacity-80 rounded-2xl mx-auto flex items-center justify-between",
@@ -68,9 +68,8 @@ export const Header = () => {
         </ul>
 
         <div className="flex items-center gap-2">
-          <ToggleLanguage />
-
           <ToggleTheme />
+          <ToggleLanguage />
 
           <Button variant="ghost" className="hidden lg:flex" asChild>
             <Link href={PAGES_CONFIG.AUTH.LOGIN}>{t("auth.links.login")}</Link>

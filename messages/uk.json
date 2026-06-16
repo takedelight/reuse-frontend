@@ -34,5 +34,22 @@
       "login": "Вхід",
       "register": "Зареєструватися"
     }
+  },
+  "footer": {
+    "nav": {
+      "links": {
+        "title": "Посилання",
+        "library": "Бібліотека",
+        "blog": "Блог",
+        "learn": "База знань",
+        "quiz": "Тести"
+      },
+      "legal": {
+        "title": "Політика та умови",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "cookies": "Cookie Policy"
+      }
+    }
   }
 }

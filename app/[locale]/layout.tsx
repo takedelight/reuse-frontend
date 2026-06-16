@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/src/core/theme";
 import { routing } from "@/src/shared/i18n/routing";
 import { cn } from "@/src/shared/lib";
+import { Footer } from "@/src/widgets/footer";
 import { Header } from "@/src/widgets/header";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -59,6 +60,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
           <NextIntlClientProvider>
             <Header />
             <main className={"flex-1"}>{children}</main>
+            <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

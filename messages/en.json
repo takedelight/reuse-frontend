@@ -5,8 +5,8 @@
       "links": {
         "library": "Library",
         "blog": "Blog",
-        "learn": "Learn",
-        "quiz": "Quiz"
+        "learn": "Knowledge Base",
+        "quiz": "Quizzes"
       }
     },
     "account_nav": {
@@ -25,14 +25,31 @@
       },
       "appereance": {
         "title": "Appearance",
-        "text": "Light / dark theme"
+        "text": "Light / Dark theme"
       }
     }
   },
   "auth": {
     "links": {
-      "login": "Sign in",
-      "register": "Sign up"
+      "login": "Sign In",
+      "register": "Sign Up"
+    }
+  },
+  "footer": {
+    "nav": {
+      "links": {
+        "title": "Links",
+        "library": "Library",
+        "blog": "Blog",
+        "learn": "Knowledge Base",
+        "quiz": "Quizzes"
+      },
+      "legal": {
+        "title": "Policies & Terms",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "cookies": "Cookie Policy"
+      }
     }
   }
 }
