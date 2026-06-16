@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Onest, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/src/core/theme";
 import { Header } from "@/src/widgets/header";
@@ -8,7 +8,12 @@ import { ReactNode } from "react";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-space-grotesk",
+});
+
+const onest = Onest({
+  subsets: ["cyrillic"],
+  variable: "--font-onest",
 });
 
 export const metadata: Metadata = {
@@ -26,14 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="uk"
       suppressHydrationWarning
-      className={cn("h-full", spaceGrotesk.variable)}
+      className={cn("h-full", spaceGrotesk.variable, onest.variable)}
     >
       <body className="min-h-full    flex flex-col">
         <ThemeProvider
           attribute="class"
-          disableTransitionOnChange
           defaultTheme="dark"
           enableSystem={false}
         >

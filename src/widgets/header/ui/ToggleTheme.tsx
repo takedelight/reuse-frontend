@@ -10,6 +10,7 @@ export const ToggleTheme = () => {
   return (
     <Button
       variant="ghost"
+      className="hidden lg:block"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "light" ? <RiSunLine /> : <RiMoonLine />}

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { Button } from "@/src/shared/ui/button";
 import { useEffect, useState } from "react";
 import { cn } from "@/src/shared/lib";
-import { RiMenuLine } from "@remixicon/react";
+import { HeaderDrawer } from "@/src/widgets/header/ui/HeaderDrawer";
+import { HEADER_NAV_LINKS } from "@/src/widgets/header/model/const";
 
 const LINKS = ["Link 1", "Link 2", "Link 3", "Link 4"];
 
@@ -41,31 +42,33 @@ export const Header = () => {
           <span className="text-foreground transition-colors">use</span>
         </Link>
 
-        <ul className="hidden sm:flex items-center gap-10">
-          {LINKS.map((link) => (
-            <li key={link} className="relative group list-none">
-              <Link
-                className="text-foreground/80 hover:text-primary transition-colors ease-in-out block py-1"
-                href={link}
-              >
-                {link}
-              </Link>
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100 origin-center"></span>
-            </li>
-          ))}
+        <ul className="hidden md:flex items-center gap-10">
+          {HEADER_NAV_LINKS.map((link) => {
+            const Icon = link.icon;
+
+            return (
+              <li key={link.alias} className="relative group list-none">
+                <Link
+                  className="text-foreground/80 flex items-center gap-1 hover:text-primary  transition-colors ease-in-out  py-1"
+                  href={link.href}
+                >
+                  <Icon className="size-4" />
+                  {link.alias}
+                </Link>
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100 origin-center"></span>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-2">
           <ToggleTheme />
-          <Button variant="ghost" className="hidden" asChild>
-            <Link href={"/login"}>
-              <span className="hidden">Login</span>
-            </Link>
+
+          <Button variant="ghost" className="hidden lg:flex" asChild>
+            <Link href={"/login"}>Login</Link>
           </Button>
 
-          <Button variant="ghost">
-            <RiMenuLine />
-          </Button>
+          <HeaderDrawer />
         </div>
       </nav>
     </header>
