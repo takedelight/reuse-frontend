@@ -6,7 +6,8 @@ import { HEADER_NAV_LINKS } from "@/src/widgets/header/model/const";
 import { HeaderDrawer } from "@/src/widgets/header/ui/HeaderDrawer";
 import { ToggleTheme } from "@/src/widgets/header/ui/ToggleTheme";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+
+import { Link } from "@/src/shared/i18n";
 import { useEffect, useState } from "react";
 
 export const Header = () => {

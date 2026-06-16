@@ -1,12 +1,12 @@
 "use client";
 
+import { Link } from "@/src/shared/i18n";
 import {
   RiCloseLine,
   RiLogoutBoxRLine,
   RiMenuLine,
   RiMoonClearLine,
 } from "@remixicon/react";
-import Link from "next/link";
 import { useState } from "react";
 
 import { useTheme } from "next-themes";
@@ -44,10 +44,10 @@ const islogb = false;
 export const HeaderDrawer = () => {
   const t = useTranslations();
 
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const [isOpen, setOpen] = useState(false);
-  const [isDark, setDark] = useState(false);
+  const [isDark, setDark] = useState(theme === "dark");
 
   return (
     <Drawer direction="right" open={isOpen} onOpenChange={setOpen}>
@@ -105,34 +105,36 @@ export const HeaderDrawer = () => {
         </DrawerHeader>
 
         <nav className="flex-1 overflow-y-auto p-4">
-          <div className="mb-6">
-            <span className="text-muted-foreground block mb-2 px-3 text-xs font-medium uppercase tracking-wider">
-              {t("header.account_nav.title")}
-            </span>
+          {islogb && (
+            <div className="mb-6">
+              <span className="text-muted-foreground block mb-2 px-3 text-xs font-medium uppercase tracking-wider">
+                {t("header.account_nav.title")}
+              </span>
 
-            <ul className="flex flex-col gap-1">
-              {DRAWER_ACCOUNT_LINKS.map((link) => {
-                const Icon = link.icon;
+              <ul className="flex flex-col gap-1">
+                {DRAWER_ACCOUNT_LINKS.map((link) => {
+                  const Icon = link.icon;
 
-                return (
-                  <li className={"flex-1 "} key={link.href}>
-                    <Button
-                      variant="ghost"
-                      className="justify-start w-full gap-3"
-                      asChild
-                    >
-                      <DrawerClose asChild>
-                        <Link href={link.href}>
-                          <Icon className="size-4" />
-                          {t(link.key)}
-                        </Link>
-                      </DrawerClose>
-                    </Button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+                  return (
+                    <li className={"flex-1 "} key={link.href}>
+                      <Button
+                        variant="ghost"
+                        className="justify-start w-full gap-3"
+                        asChild
+                      >
+                        <DrawerClose asChild>
+                          <Link href={link.href}>
+                            <Icon className="size-4" />
+                            {t(link.key)}
+                          </Link>
+                        </DrawerClose>
+                      </Button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
 
           <div>
             <span className="text-muted-foreground block mb-2 px-3 text-xs font-medium uppercase tracking-wider">
