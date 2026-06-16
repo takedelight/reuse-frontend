@@ -1,10 +1,17 @@
-import type { Metadata } from "next";
-import { Onest, Space_Grotesk } from "next/font/google";
-import "./globals.css";
 import { ThemeProvider } from "@/src/core/theme";
-import { Header } from "@/src/widgets/header";
+import { routing } from "@/src/shared/i18n/routing";
 import { cn } from "@/src/shared/lib";
-import { ReactNode } from "react";
+import { Header } from "@/src/widgets/header";
+import type { Metadata } from "next";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { Onest, Space_Grotesk } from "next/font/google";
+import { notFound } from "next/navigation";
+import "./globals.css";
+
+interface LayoutProps {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -24,14 +31,16 @@ export const metadata: Metadata = {
   description: "Reuse app",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: ReactNode;
-}>) {
+export default async function RootLayout({ children, params }: LayoutProps) {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   return (
     <html
-      lang="uk"
+      lang={locale}
       suppressHydrationWarning
       className={cn("h-full", spaceGrotesk.variable, onest.variable)}
     >
@@ -41,8 +50,10 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem={false}
         >
-          <Header />
-          <main className={"flex-1"}>{children}</main>
+          <NextIntlClientProvider>
+            <Header />
+            <main className={"flex-1"}>{children}</main>
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>
