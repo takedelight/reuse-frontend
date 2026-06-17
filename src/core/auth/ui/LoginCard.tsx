@@ -30,7 +30,9 @@ export const LoginCard = () => {
     useLogin();
   const t = useTranslations();
 
-  const { errors } = formState;
+  const { errors, isDirty, isValid } = formState;
+
+  const isDisabled = !isDirty || !isValid;
 
   return (
     <Card className="w-75 sm:w-150">
@@ -155,7 +157,7 @@ export const LoginCard = () => {
       </CardContent>
 
       <CardFooter className="flex flex-col items-center gap-4">
-        <Button form={loginFormId} className="w-full">
+        <Button form={loginFormId} className="w-full" disabled={isDisabled}>
           {t("auth.login_page.form.submit_button")}
         </Button>
         <span className="text-sm text-muted-foreground">

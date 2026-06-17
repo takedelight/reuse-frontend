@@ -31,7 +31,9 @@ export const RegisterCard = () => {
   const { registerFormId, handleSubmit, onSubmit, formState, control } =
     useRegister();
 
-  const { errors } = formState;
+  const { errors, isDirty, isValid } = formState;
+
+  const isDisabled = !isDirty || !isValid;
 
   return (
     <Card className="w-75 sm:w-150">
@@ -73,7 +75,13 @@ export const RegisterCard = () => {
                       {t("auth.register_page.form.username_label")}
                     </FieldLabel>
                     <FieldContent>
-                      <Input id="username" placeholder="john.doe" {...field} />
+                      <Input
+                        id="username"
+                        type="text"
+                        autoCapitalize="off"
+                        placeholder="john.doe"
+                        {...field}
+                      />
                     </FieldContent>
                     <FieldError
                       errors={
@@ -183,7 +191,7 @@ export const RegisterCard = () => {
       </CardContent>
 
       <CardFooter className="flex flex-col items-center gap-4">
-        <Button form={registerFormId} className="w-full">
+        <Button form={registerFormId} className="w-full" disabled={isDisabled}>
           {t("auth.register_page.form.submit_button")}
         </Button>
         <span className="text-sm text-muted-foreground">
