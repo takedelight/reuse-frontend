@@ -1,4 +1,4 @@
-import { RegisterCard } from "@/src/core/auth/ui";
+import { RegisterCard } from "@/src/core/auth";
 
 export default function RegisterPage() {
   return (

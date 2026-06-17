@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/src/core/auth";
 import { ThemeProvider } from "@/src/core/theme";
 import { routing } from "@/src/shared/i18n/routing";
 import { cn } from "@/src/shared/lib";
@@ -59,8 +60,10 @@ export default async function RootLayout({ children, params }: LayoutProps) {
         >
           <NextIntlClientProvider>
             <QueryProvider>
-              <Toaster />
-              {children}
+              <AuthProvider>
+                <Toaster />
+                {children}
+              </AuthProvider>
             </QueryProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
