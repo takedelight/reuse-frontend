@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { Onest, Space_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
+import { QueryProvider } from "../providers/query.provider";
 import "./globals.css";
 
 interface LayoutProps {
@@ -57,8 +58,10 @@ export default async function RootLayout({ children, params }: LayoutProps) {
           enableSystem={false}
         >
           <NextIntlClientProvider>
-            <Toaster />
-            {children}
+            <QueryProvider>
+              <Toaster />
+              {children}
+            </QueryProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
