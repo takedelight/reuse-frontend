@@ -112,9 +112,7 @@ export const LoginCard = () => {
                       <Input
                         id="password"
                         type="password"
-                        placeholder={t(
-                          "auth.login_page.form.password_placeholder",
-                        )}
+                        placeholder="********"
                         {...field}
                       />
                     </FieldContent>

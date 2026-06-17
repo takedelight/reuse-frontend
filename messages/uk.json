@@ -58,7 +58,7 @@
     },
     "register_page": {
       "title": "Реєстрація",
-      "description": "Створіть акаунт, щоб почати роботу з  платформою та користуватися всіма можливостями.",
+      "description": "Створіть акаунт, щоб почати роботу з платформою та користуватися всіма можливостями.",
       "oauth": {
         "google": "Зареєструватися через Google",
         "github": "Зареєструватися через GitHub",
@@ -66,13 +66,9 @@
       },
       "form": {
         "username_label": "Ім'я користувача",
-        "username_placeholder": "john.doe",
         "email_label": "Email",
-        "email_placeholder": "john.doe@example.com",
         "password_label": "Пароль",
-        "password_placeholder": "••••••••",
         "confirm_password_label": "Підтвердження пароля",
-        "confirm_password_placeholder": "••••••••",
         "remember_me": "Запам'ятати мене",
         "submit_button": "Зареєструватися"
       },
@@ -80,7 +76,8 @@
         "already_have_account": "Вже маєте акаунт?",
         "sign_in_link": "Увійти"
       }
-    }
+    },
+    "errors": {}
   },
   "footer": {
     "nav": {
@@ -101,11 +98,17 @@
   },
   "errors": {
     "client": {
-      "invalid_email": "Невірна адреса email. Спробуйте ще раз.",
+      "invalid_username": {
+        "required": "Ім'я користувача є обов'язковим.",
+        "min_length": "Ім'я користувача повинно містити щонайменше 4 символи.",
+        "max_length": "Ім'я користувача не може перевищувати 30 символів."
+      },
+      "invalid_email": "Будь ласка, введіть коректну адресу електронної пошти.",
       "invalid_password": {
         "min_length": "Пароль повинен містити щонайменше 8 символів.",
         "max_length": "Пароль не може перевищувати 32 символи."
-      }
+      },
+      "passwords_dont_match": "Паролі не збігаються."
     }
   },
   "toast": {
