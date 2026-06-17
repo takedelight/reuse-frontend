@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/src/core/theme";
 import { routing } from "@/src/shared/i18n/routing";
 import { cn } from "@/src/shared/lib";
+import { Toaster } from "@/src/shared/ui";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { Onest, Space_Grotesk } from "next/font/google";
@@ -55,7 +56,10 @@ export default async function RootLayout({ children, params }: LayoutProps) {
           defaultTheme="dark"
           enableSystem={false}
         >
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            <Toaster />
+            {children}
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

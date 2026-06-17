@@ -7,4 +7,5 @@ export * from "./field";
 export * from "./flickering-grid";
 export * from "./input";
 export * from "./label";
+export * from "./sonner";
 export * from "./switch";

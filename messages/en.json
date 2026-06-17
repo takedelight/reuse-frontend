@@ -98,5 +98,21 @@
         "cookies": "Cookie Policy"
       }
     }
+  },
+  "errors": {
+    "client": {
+      "invalid_email": "Invalid email. Please try again.",
+      "invalid_password": {
+        "min_length": "Password must be at least 8 characters long.",
+        "max_length": "Password cannot exceed 32 characters."
+      }
+    }
+  },
+  "toast": {
+    "auth": {
+      "success": "You have successfully logged in to your account.",
+      "invalid_credentials": "Invalid credentials. Please check your email and password.",
+      "unauthorized": "You are not authorized. Please log in to your account."
+    }
   }
 }
