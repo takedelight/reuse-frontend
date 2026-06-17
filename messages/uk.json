@@ -32,7 +32,8 @@
   "auth": {
     "links": {
       "login": "Увійти",
-      "register": "Зареєструватися"
+      "register": "Зареєструватися",
+      "logout": "Вийти"
     },
     "login_page": {
       "title": "Вхід",

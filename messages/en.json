@@ -32,7 +32,8 @@
   "auth": {
     "links": {
       "login": "Sign In",
-      "register": "Sign Up"
+      "register": "Sign Up",
+      "logout": "Logout"
     },
     "login_page": {
       "title": "Login",

@@ -12,8 +12,6 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 
 import {
-  Avatar,
-  AvatarImage,
   Button,
   Drawer,
   DrawerContent,
@@ -22,6 +20,8 @@ import {
   DrawerTrigger,
 } from "@/src/shared/ui";
 
+import { useAuth } from "@/src/core/auth";
+import { UserSummary } from "@/src/entity/user";
 import { PAGES_CONFIG } from "@/src/shared/configs/pages";
 import { DrawerClose } from "@/src/shared/ui/drawer";
 import { Label } from "@/src/shared/ui/label";
@@ -32,16 +32,6 @@ import {
 } from "@/src/widgets/header/model/const";
 import { useTranslations } from "next-intl";
 
-const mockUser = {
-  id: "usr_9481024",
-  username: "johndoe",
-  email: "john.doe@example.com",
-  avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=johndoe",
-  createdAt: "2026-03-15T10:30:00Z",
-};
-
-const islogb = false;
-
 export const HeaderDrawer = () => {
   const t = useTranslations();
 
@@ -49,6 +39,10 @@ export const HeaderDrawer = () => {
 
   const [isOpen, setOpen] = useState(false);
   const [isDark, setDark] = useState(theme === "dark");
+
+  const {
+    values: { isAuthenticated, user },
+  } = useAuth();
 
   return (
     <Drawer direction="right" open={isOpen} onOpenChange={setOpen}>
@@ -68,23 +62,8 @@ export const HeaderDrawer = () => {
           <DrawerTitle className="sr-only">Menu Drawer</DrawerTitle>
 
           <div className="flex items-start justify-between">
-            {islogb ? (
-              <div className="flex items-center gap-3">
-                <Avatar className="size-12">
-                  <AvatarImage
-                    src={mockUser.avatarUrl}
-                    alt={mockUser.username}
-                  />
-                </Avatar>
-
-                <div className="flex flex-col">
-                  <span className="font-semibold">{mockUser.username}</span>
-
-                  <span className="text-muted-foreground text-sm">
-                    {mockUser.email}
-                  </span>
-                </div>
-              </div>
+            {isAuthenticated ? (
+              <UserSummary user={user} />
             ) : (
               <div className="flex items-center gap-3">
                 <div className="flex flex-col text-left">
@@ -106,7 +85,7 @@ export const HeaderDrawer = () => {
         </DrawerHeader>
 
         <nav className="flex-1 overflow-y-auto p-4">
-          {islogb && (
+          {isAuthenticated && (
             <div className="mb-6">
               <span className="text-xs font-bold uppercase tracking-wider text-foreground/50">
                 {t("header.account_nav.title")}
@@ -200,7 +179,7 @@ export const HeaderDrawer = () => {
         </div>
 
         <div className="border-t p-4">
-          {islogb ? (
+          {isAuthenticated ? (
             <Button variant="destructive" className="w-full gap-2">
               <RiLogoutBoxRLine className="size-4" />
               {t("auth.links.logout")}

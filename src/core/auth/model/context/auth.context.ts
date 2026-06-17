@@ -1,3 +1,5 @@
+"use client";
+
 import { type User } from "@/src/entity/user";
 import { createContext } from "react";
 

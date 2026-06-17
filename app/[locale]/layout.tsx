@@ -52,7 +52,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
         fontClass,
       )}
     >
-      <body className="min-h-full    flex flex-col">
+      <body className="min-h-full  flex flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

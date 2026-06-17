@@ -63,7 +63,6 @@ export const useLogin = () => {
       toast.success(t("toast.auth.success_login"));
     },
     onError: (error: unknown) => {
-      1;
       if (error instanceof Error) {
         const isValidKey =
           error.message.startsWith("errors.") ||

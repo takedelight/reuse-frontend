@@ -1,12 +1,14 @@
 "use client";
 
 import { cn } from "@/src/shared/lib";
-import { Button } from "@/src/shared/ui/button";
+import { Button, Separator } from "@/src/shared/ui";
 import { HEADER_NAV_LINKS } from "@/src/widgets/header/model/const";
 import { HeaderDrawer } from "@/src/widgets/header/ui/HeaderDrawer";
 import { ToggleTheme } from "@/src/widgets/header/ui/ToggleTheme";
 import { useTranslations } from "next-intl";
 
+import { useAuth } from "@/src/core/auth";
+import { UserAvatar } from "@/src/entity/user";
 import { ToggleLanguage } from "@/src/features/toggle-language";
 import { PAGES_CONFIG } from "@/src/shared/configs/pages";
 import { Link } from "@/src/shared/i18n";
@@ -16,9 +18,13 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const t = useTranslations();
 
+  const {
+    values: { user, isAuthenticated },
+  } = useAuth();
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 500) {
+      if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -68,12 +74,23 @@ export const Header = () => {
         </ul>
 
         <div className="flex items-center gap-2">
-          <ToggleTheme />
           <ToggleLanguage />
+          <ToggleTheme />
 
-          <Button variant="ghost" className="hidden lg:flex" asChild>
-            <Link href={PAGES_CONFIG.AUTH.LOGIN}>{t("auth.links.login")}</Link>
-          </Button>
+          <Separator orientation="vertical" className="self-center-safe" />
+
+          {isAuthenticated && user ? (
+            <UserAvatar
+              avatarUrl={user.avatarUrl}
+              fallback={user.username.slice(0, 2).toUpperCase()}
+            />
+          ) : (
+            <Button variant="ghost" className="hidden lg:flex" asChild>
+              <Link href={PAGES_CONFIG.AUTH.LOGIN}>
+                {t("auth.links.login")}
+              </Link>
+            </Button>
+          )}
 
           <HeaderDrawer />
         </div>
