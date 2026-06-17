@@ -33,6 +33,53 @@
     "links": {
       "login": "Sign In",
       "register": "Sign Up"
+    },
+    "login_page": {
+      "title": "Login",
+      "description": "Sign in to your account to continue",
+      "oauth": {
+        "google": "Sign in with Google",
+        "github": "Sign in with GitHub",
+        "divider": "or"
+      },
+      "form": {
+        "email_label": "Email",
+        "email_placeholder": "john.doe@example.com",
+        "password_label": "Password",
+        "password_placeholder": "••••••••",
+        "forgot_password_link": "Forgot your password?",
+        "remember_me": "Remember me",
+        "submit_button": "Login"
+      },
+      "footer": {
+        "dont_have_account": "Don't have an account?",
+        "sign_up_link": "Sign up"
+      }
+    },
+    "register_page": {
+      "title": "Register",
+      "description": "Create an account to get started with our platform and enjoy all the features.",
+      "oauth": {
+        "google": "Sign up with Google",
+        "github": "Sign up with GitHub",
+        "divider": "Or"
+      },
+      "form": {
+        "username_label": "Username",
+        "username_placeholder": "john.doe",
+        "email_label": "Email",
+        "email_placeholder": "john.doe@example.com",
+        "password_label": "Password",
+        "password_placeholder": "••••••••",
+        "confirm_password_label": "Confirm Password",
+        "confirm_password_placeholder": "••••••••",
+        "remember_me": "Remember me",
+        "submit_button": "Register"
+      },
+      "footer": {
+        "already_have_account": "Already have an account?",
+        "sign_in_link": "Sign in"
+      }
     }
   },
   "footer": {

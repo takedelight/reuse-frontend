@@ -13,7 +13,7 @@
       "title": "Акаунт",
       "links": {
         "profile": "Профіль",
-        "favorites": "Улюблене",
+        "favorites": "Обране",
         "settings": "Налаштування",
         "messages": "Повідомлення"
       }
@@ -25,14 +25,61 @@
       },
       "appereance": {
         "title": "Зовнішній вигляд",
-        "text": "Світла / темна тема"
+        "text": "Світла / Темна тема"
       }
     }
   },
   "auth": {
     "links": {
-      "login": "Вхід",
+      "login": "Увійти",
       "register": "Зареєструватися"
+    },
+    "login_page": {
+      "title": "Вхід",
+      "description": "Увійдіть у свій акаунт, щоб продовжити",
+      "oauth": {
+        "google": "Увійти через Google",
+        "github": "Увійти через GitHub",
+        "divider": "або"
+      },
+      "form": {
+        "email_label": "Email",
+        "email_placeholder": "john.doe@example.com",
+        "password_label": "Пароль",
+        "password_placeholder": "••••••••",
+        "forgot_password_link": "Забули пароль?",
+        "remember_me": "Запам'ятати мене",
+        "submit_button": "Увійти"
+      },
+      "footer": {
+        "dont_have_account": "Немає акаунту?",
+        "sign_up_link": "Зареєструватися"
+      }
+    },
+    "register_page": {
+      "title": "Реєстрація",
+      "description": "Створіть акаунт, щоб почати роботу з  платформою та користуватися всіма можливостями.",
+      "oauth": {
+        "google": "Зареєструватися через Google",
+        "github": "Зареєструватися через GitHub",
+        "divider": "Або"
+      },
+      "form": {
+        "username_label": "Ім'я користувача",
+        "username_placeholder": "john.doe",
+        "email_label": "Email",
+        "email_placeholder": "john.doe@example.com",
+        "password_label": "Пароль",
+        "password_placeholder": "••••••••",
+        "confirm_password_label": "Підтвердження пароля",
+        "confirm_password_placeholder": "••••••••",
+        "remember_me": "Запам'ятати мене",
+        "submit_button": "Зареєструватися"
+      },
+      "footer": {
+        "already_have_account": "Вже маєте акаунт?",
+        "sign_in_link": "Увійти"
+      }
     }
   },
   "footer": {
@@ -45,10 +92,10 @@
         "quiz": "Тести"
       },
       "legal": {
-        "title": "Політика та умови",
-        "privacy": "Privacy Policy",
-        "terms": "Terms of Service",
-        "cookies": "Cookie Policy"
+        "title": "Правила та Умови",
+        "privacy": "Політика конфіденційності",
+        "terms": "Умови використання",
+        "cookies": "Політика використання файлів cookie"
       }
     }
   }
