@@ -12,7 +12,7 @@ export const ToggleLanguage = () => {
   return (
     <div className="flex items-center gap-1 p-1 rounded-xl h-9 select-none">
       <Button
-        variant="ghost"
+        variant={locale === "uk" ? "default" : "ghost"}
         size="sm"
         onClick={() => {
           if (locale === "uk") return;
@@ -21,11 +21,7 @@ export const ToggleLanguage = () => {
             scroll: false,
           });
         }}
-        className={`h-7 px-2 text-xs font-bold transition-colors cursor-pointer rounded-lg ${
-          locale === "uk"
-            ? "text-primary-foreground bg-primary shadow-2xs"
-            : "text-muted-foreground/60 hover:text-foreground"
-        }`}
+        className={`h-7 px-2  text-xs font-bold transition-colors cursor-pointer rounded-lg ${locale !== "uk" && "bg-muted"}`}
       >
         UK
       </Button>
@@ -33,7 +29,7 @@ export const ToggleLanguage = () => {
       <span className="h-4 w-px bg-foreground/15" />
 
       <Button
-        variant="ghost"
+        variant={locale === "en" ? "default" : "ghost"}
         size="sm"
         onClick={() => {
           if (locale === "en") return;
@@ -42,11 +38,7 @@ export const ToggleLanguage = () => {
             scroll: false,
           });
         }}
-        className={`h-7 px-2 text-xs font-bold transition-colors cursor-pointer rounded-lg ${
-          locale === "en"
-            ? "text-primary-foreground bg-primary shadow-2xs"
-            : "text-muted-foreground/60 hover:text-foreground"
-        }`}
+        className={`h-7 px-2 text-xs font-bold transition-colors cursor-pointer rounded-lg `}
       >
         EN
       </Button>

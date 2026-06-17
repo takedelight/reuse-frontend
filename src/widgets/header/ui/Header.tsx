@@ -80,10 +80,16 @@ export const Header = () => {
           <Separator orientation="vertical" className="self-center-safe" />
 
           {isAuthenticated && user ? (
-            <UserAvatar
-              avatarUrl={user.avatarUrl}
-              fallback={user.username.slice(0, 2).toUpperCase()}
-            />
+            <Link
+              href={PAGES_CONFIG.PROFILE.HOME}
+              className="hidden lg:flex items-center gap-2"
+            >
+              {" "}
+              <UserAvatar
+                avatarUrl={user.avatarUrl}
+                fallback={user.username.slice(0, 2).toUpperCase()}
+              />
+            </Link>
           ) : (
             <Button variant="ghost" className="hidden lg:flex" asChild>
               <Link href={PAGES_CONFIG.AUTH.LOGIN}>
