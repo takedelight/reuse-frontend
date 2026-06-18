@@ -11,5 +11,6 @@ export const PAGES_CONFIG = {
   PROFILE: {
     HOME: "/profile",
     SETTINGS: "/profile/settings",
+    SECURITY: "/profile/security",
   },
 };

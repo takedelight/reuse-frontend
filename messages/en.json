@@ -80,6 +80,16 @@
     },
     "errors": {}
   },
+  "profile": {
+    "aside": {
+      "links": {
+        "profile": "Profile",
+        "settings": "Settings",
+        "notifications": "Notifications",
+        "security": "Security"
+      }
+    }
+  },
   "footer": {
     "nav": {
       "links": {

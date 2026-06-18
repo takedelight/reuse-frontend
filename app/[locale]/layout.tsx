@@ -47,12 +47,11 @@ export default async function RootLayout({ children, params }: LayoutProps) {
       lang={locale}
       suppressHydrationWarning
       className={cn(
-        "h-full dark",
         locale === "en" ? spaceGrotesk.variable : onest.variable,
         fontClass,
       )}
     >
-      <body className="min-h-full  flex flex-col">
+      <body className="h-screen w-full bg-background text-foreground antialiased flex flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

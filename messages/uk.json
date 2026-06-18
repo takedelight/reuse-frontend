@@ -80,6 +80,16 @@
     },
     "errors": {}
   },
+  "profile": {
+    "aside": {
+      "links": {
+        "profile": "Профіль",
+        "settings": "Налаштування",
+        "notifications": "Сповіщення",
+        "security": "Безпека"
+      }
+    }
+  },
   "footer": {
     "nav": {
       "links": {
@@ -93,7 +103,7 @@
         "title": "Правила та Умови",
         "privacy": "Політика конфіденційності",
         "terms": "Умови використання",
-        "cookies": "Політика  файлів cookie"
+        "cookies": "Політика файлів cookie"
       }
     }
   },

@@ -2,7 +2,11 @@ import { FlickeringGrid } from "@/src/shared/ui";
 import { Footer } from "@/src/widgets/footer";
 import { Header } from "@/src/widgets/header";
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+export default function LandingLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <Header />
