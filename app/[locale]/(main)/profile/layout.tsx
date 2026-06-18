@@ -8,9 +8,7 @@ export default function ProfileLayout({
   return (
     <section className="container flex flex-col xl:grid xl:grid-cols-8  gap-5 mx-auto px-1 ">
       <ProfileAside />
-      <div className="col-span-6  border-foreground/10   bg-card  border rounded-xl shadow-xl">
-        s
-      </div>
+      <div className="col-span-6 ">{children}</div>
     </section>
   );
 }

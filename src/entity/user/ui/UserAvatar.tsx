@@ -4,17 +4,23 @@ interface UserAvatarProps {
   avatarUrl: string | null;
   fallback?: string;
   className?: string;
+  classNames?: {
+    fallback?: string;
+  };
 }
 
 export const UserAvatar = ({
   avatarUrl,
   fallback,
-  className,
+  classNames,
+  className = "",
 }: UserAvatarProps) => {
   return (
     <Avatar className={className}>
       {avatarUrl && <AvatarImage src={avatarUrl} alt="User avatar" />}
-      <AvatarFallback>{fallback || "U"}</AvatarFallback>
+      <AvatarFallback className={classNames?.fallback}>
+        {fallback || "U"}
+      </AvatarFallback>
     </Avatar>
   );
 };

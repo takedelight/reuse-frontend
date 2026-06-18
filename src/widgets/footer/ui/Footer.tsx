@@ -11,7 +11,7 @@ export const Footer = () => {
   const t = useTranslations("footer");
 
   return (
-    <footer className="sticky bottom-0 px-1 z-50 py-4 w-full ">
+    <footer className=" px-1 z-50 py-4 mt-5 w-full ">
       <nav className="container border border-foreground/10 bg-background/60 backdrop-blur-3xl p-4  opacity-90 rounded-2xl mx-auto flex flex-col md:flex-row md:items-start justify-between  gap-8 md:gap-4">
         <div className="max-w-sm flex flex-col gap-4">
           <Link

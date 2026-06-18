@@ -12,7 +12,7 @@ export const ProfileAside = () => {
   const pathname = usePathname();
 
   return (
-    <aside className=" col-span-2 border-foreground/10   bg-card  border rounded-xl shadow-xl">
+    <aside className="sticky top-24 col-span-2 border-foreground/10 h-fit   bg-card  border rounded-xl">
       <ScrollArea className="w-full">
         <ul className="flex p-2 xl:p-0 w-full  xl:flex-col xl:xl:items-stretch items-center gap-2">
           {ASIDE_LINKS.map((link) => {
