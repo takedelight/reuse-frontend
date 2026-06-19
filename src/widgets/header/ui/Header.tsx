@@ -1,36 +1,22 @@
-"use client";
-
-import { useAuth } from "@/src/core/auth";
-import { UserAvatar } from "@/src/entity/user";
+import { getUserProfile } from "@/src/entity/user";
 import { ToggleLanguage } from "@/src/features/toggle-language";
-import { PAGES_CONFIG } from "@/src/shared/configs/pages";
 import { Link } from "@/src/shared/i18n";
-import { Button, Separator } from "@/src/shared/ui";
+import { Logo, Separator } from "@/src/shared/ui";
 import { HEADER_NAV_LINKS } from "@/src/widgets/header/model/const";
 import { HeaderDrawer } from "@/src/widgets/header/ui/HeaderDrawer";
 import { ToggleTheme } from "@/src/widgets/header/ui/ToggleTheme";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { HeaderAuth } from "./HeaderAuth";
 
-export const Header = () => {
-  const t = useTranslations();
+export const Header = async () => {
+  const t = await getTranslations();
 
-  const {
-    values: { user, isAuthenticated },
-  } = useAuth();
+  const user = await getUserProfile();
 
   return (
     <header className=" p-2 mb-5">
       <nav className="container mx-auto flex items-center justify-between border border-foreground/10 bg-background/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-sm">
-        <Link
-          href={PAGES_CONFIG.HOME}
-          className="font-bold text-xl tracking-wide group"
-        >
-          <span className="text-primary transition-colors">re</span>
-          <span className="text-muted-foreground mx-0.5 transition-colors">
-            :
-          </span>
-          <span className="text-foreground transition-colors">use</span>
-        </Link>
+        <Logo />
 
         <ul className="hidden md:flex items-center gap-10">
           {HEADER_NAV_LINKS.map((link) => {
@@ -57,23 +43,7 @@ export const Header = () => {
 
           <Separator orientation="vertical" className="h-6" />
 
-          {isAuthenticated && user ? (
-            <Link
-              href={PAGES_CONFIG.PROFILE.HOME}
-              className="hidden lg:flex items-center gap-2 rounded-full outline-none"
-            >
-              <UserAvatar
-                avatarUrl={user.avatarUrl}
-                fallback={user.username.slice(0, 2).toUpperCase()}
-              />
-            </Link>
-          ) : (
-            <Button variant="ghost" className="hidden lg:flex" asChild>
-              <Link href={PAGES_CONFIG.AUTH.LOGIN}>
-                {t("auth.links.login")}
-              </Link>
-            </Button>
-          )}
+          <HeaderAuth initialUser={user} />
 
           <HeaderDrawer />
         </div>

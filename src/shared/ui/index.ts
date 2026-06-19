@@ -7,6 +7,7 @@ export * from "./field";
 export * from "./flickering-grid";
 export * from "./input";
 export * from "./label";
+export * from "./logo";
 export * from "./scroll-area";
 export * from "./separator";
 export * from "./skeleton";
