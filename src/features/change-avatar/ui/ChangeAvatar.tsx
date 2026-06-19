@@ -1,20 +1,16 @@
 "use client";
 
 import { User, UserAvatar } from "@/src/entity/user";
-import { Button, Skeleton, Spinner } from "@/src/shared/ui";
+import { Button, Spinner } from "@/src/shared/ui";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 import { useChangeAvatar } from "../model/useChangeAvatar";
 
 interface ChangeAvatarProps {
   user: User | null;
-  isLoading: boolean;
 }
 
-export const ChangeAvatar = ({
-  user,
-  isLoading: isUserLoading,
-}: ChangeAvatarProps) => {
+export const ChangeAvatar = ({ user }: ChangeAvatarProps) => {
   const t = useTranslations("profile.settings.profile_info.avatar");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -27,26 +23,22 @@ export const ChangeAvatar = ({
 
   return (
     <div className="flex items-center gap-4">
-      {isUserLoading ? (
-        <Skeleton className="size-20 rounded-full" />
-      ) : (
-        <div className="relative size-20">
-          <UserAvatar
-            className="size-20"
-            classNames={{ fallback: "text-2xl" }}
-            avatarUrl={user?.avatarUrl || null}
-            fallback={fallback}
-          />
-          {isUploading && (
-            <div className="absolute inset-0 bg-background/60 rounded-full flex items-center justify-center border border-foreground/10">
-              <Spinner />
-            </div>
-          )}
-        </div>
-      )}
+      <div className="relative size-20">
+        <UserAvatar
+          className="size-20"
+          classNames={{ fallback: "text-2xl" }}
+          avatarUrl={user?.avatarUrl || null}
+          fallback={fallback}
+        />
+        {isUploading && (
+          <div className="absolute inset-0 bg-background/60 rounded-full flex items-center justify-center border border-foreground/10">
+            <Spinner />
+          </div>
+        )}
+      </div>
 
       <div className="flex flex-col gap-2">
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <Button size="sm" onClick={() => inputRef.current?.click()}>
             {t("upload_button")}
           </Button>

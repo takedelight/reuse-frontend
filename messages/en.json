@@ -194,5 +194,18 @@
       "avatar_delete_success": "Avatar removed successfully!",
       "preferences_update_success": "Preferences updated successfully!"
     }
+  },
+  "validation": {
+    "user": {
+      "username": {
+        "required": "Username is required.",
+        "min_length": "Username must be at least 3 characters long.",
+        "max_length": "Username cannot exceed 25 characters."
+      },
+      "bio": {
+        "min_length": "Bio must be at least 3 characters long.",
+        "max_length": "Bio cannot exceed 300 characters."
+      }
+    }
   }
 }
