@@ -45,14 +45,18 @@ export const LoginCard = () => {
 
       <CardContent className="space-y-10 mt-6">
         <div className="grid sm:grid-cols-2 gap-4">
-          <Button className="w-full" variant="outline">
-            <RiGoogleFill />
-            {t("auth.login_page.oauth.google")}
+          <Button className="w-full" variant="outline" asChild>
+            <Link href={PAGES_CONFIG.AUTH.GOOGLE_OAUTH}>
+              <RiGoogleFill />
+              {t("auth.login_page.oauth.google")}
+            </Link>
           </Button>
 
-          <Button className="w-full" variant="outline">
-            <RiGithubFill />
-            {t("auth.login_page.oauth.github")}
+          <Button className="w-full" variant="outline" asChild>
+            <Link href={PAGES_CONFIG.AUTH.GITHUB_OAUTH}>
+              <RiGithubFill />
+              {t("auth.login_page.oauth.github")}
+            </Link>
           </Button>
         </div>
 

@@ -7,6 +7,8 @@ export const PAGES_CONFIG = {
   AUTH: {
     LOGIN: "/auth/login",
     REGISTER: "/auth/register",
+    GOOGLE_OAUTH: "http://localhost:5000/oauth/google",
+    GITHUB_OAUTH: "http://localhost:5000/oauth/github",
   },
   PROFILE: {
     HOME: "/profile",
