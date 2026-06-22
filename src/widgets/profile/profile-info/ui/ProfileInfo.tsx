@@ -1,4 +1,3 @@
-import { getUserProfile } from "@/src/entity/user";
 import { ChangeAvatar } from "@/src/features/change-avatar";
 import { UpdateProfileForm } from "@/src/features/update-profile-info";
 import {
@@ -9,11 +8,14 @@ import {
   CardTitle,
 } from "@/src/shared/ui";
 import { getTranslations } from "next-intl/server";
+import { cookies } from "next/headers";
 
 export const ProfileInfo = async () => {
   const t = await getTranslations("profile.settings.profile_info");
 
-  const user = await getUserProfile();
+  const user = (await cookies()).get("user")?.value
+    ? JSON.parse((await cookies()).get("user")?.value as string)
+    : null;
 
   return (
     <Card>

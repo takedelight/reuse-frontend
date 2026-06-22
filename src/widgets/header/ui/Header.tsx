@@ -1,4 +1,3 @@
-import { getUserProfile } from "@/src/entity/user";
 import { ToggleLanguage } from "@/src/features/toggle-language";
 import { Link } from "@/src/shared/i18n";
 import { Logo, Separator } from "@/src/shared/ui";
@@ -6,16 +5,19 @@ import { HEADER_NAV_LINKS } from "@/src/widgets/header/model/const";
 import { HeaderDrawer } from "@/src/widgets/header/ui/HeaderDrawer";
 import { ToggleTheme } from "@/src/widgets/header/ui/ToggleTheme";
 import { getTranslations } from "next-intl/server";
+import { cookies } from "next/headers";
 import { HeaderAuth } from "./HeaderAuth";
 
 export const Header = async () => {
   const t = await getTranslations();
 
-  const user = await getUserProfile();
+  const user = (await cookies()).get("user")?.value
+    ? JSON.parse((await cookies()).get("user")?.value as string)
+    : null;
 
   return (
     <header className=" p-2 mb-5">
-      <nav className="container mx-auto flex items-center justify-between border border-foreground/10 bg-background/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-sm">
+      <nav className="container mx-auto flex items-center justify-between border border-foreground/10 bg-background/95 backdrop-blur-md px-4 py-3 rounded-2xl ">
         <Logo />
 
         <ul className="hidden md:flex items-center gap-10">
@@ -43,7 +45,7 @@ export const Header = async () => {
 
           <Separator orientation="vertical" className="h-6" />
 
-          <HeaderAuth initialUser={user} />
+          <HeaderAuth user={user} />
 
           <HeaderDrawer />
         </div>

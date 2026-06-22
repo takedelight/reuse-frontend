@@ -1,11 +1,116 @@
 import createMiddleware from "next-intl/middleware";
-import { type NextRequest } from "next/server";
-import { routing } from "./src/shared/i18n/routing";
+import { NextResponse, type NextRequest } from "next/server";
+import { API_URL } from "./src/shared/constants";
+import { Locale, routing } from "./src/shared/i18n/routing";
 
 const intlMiddleware = createMiddleware(routing);
 
-export default function proxy(request: NextRequest) {
-  return intlMiddleware(request);
+function isProtected(pathname: string): boolean {
+  return (
+    pathname.startsWith("/profile") ||
+    routing.locales.some((locale) => pathname.startsWith(`/${locale}/profile`))
+  );
+}
+
+export default async function proxy(request: NextRequest) {
+  const accessToken = request.cookies.get("accessToken")?.value;
+  const refreshToken = request.cookies.get("refreshToken")?.value;
+  const { pathname } = request.nextUrl;
+
+  const isProfileRoute = isProtected(pathname);
+  const response = intlMiddleware(request);
+
+  if (!accessToken && !refreshToken) {
+    response.cookies.set("user", "null", { path: "/", sameSite: "lax" });
+    if (isProfileRoute) return redirectToLogin(request);
+    return response;
+  }
+
+  if (!accessToken && refreshToken) {
+    const refreshRes = await handleRefresh(refreshToken, response);
+    if (isProfileRoute && refreshRes.cookies.get("user")?.value === "null") {
+      return redirectToLogin(request);
+    }
+    return refreshRes;
+  }
+
+  try {
+    const userResponse = await fetch(`${API_URL}/auth/profile`, {
+      headers: {
+        Cookie: `accessToken=${accessToken}`,
+      },
+    });
+
+    if (userResponse.status === 401 && refreshToken) {
+      const refreshRes = await handleRefresh(refreshToken, response);
+      if (isProfileRoute && refreshRes.cookies.get("user")?.value === "null") {
+        return redirectToLogin(request);
+      }
+      return refreshRes;
+    }
+
+    if (!userResponse.ok) {
+      response.cookies.set("user", "null", { path: "/", sameSite: "lax" });
+      if (isProfileRoute) return redirectToLogin(request);
+      return response;
+    }
+
+    const userData = await userResponse.json();
+    response.cookies.set("user", JSON.stringify(userData), {
+      path: "/",
+      sameSite: "lax",
+    });
+  } catch (error) {
+    console.error("Profile check error in middleware:", error);
+    if (isProfileRoute) return redirectToLogin(request);
+  }
+
+  return response;
+}
+
+async function handleRefresh(
+  refreshToken: string,
+  response: NextResponse,
+): Promise<NextResponse> {
+  try {
+    const refreshResponse = await fetch(`${API_URL}/auth/refresh`, {
+      method: "POST",
+      headers: {
+        Cookie: `refreshToken=${refreshToken}`,
+      },
+    });
+
+    if (!refreshResponse.ok) {
+      response.cookies.set("user", "null", { path: "/", sameSite: "lax" });
+      response.cookies.delete("accessToken");
+      response.cookies.delete("refreshToken");
+      return response;
+    }
+
+    response.cookies.set("user", "true", { path: "/", sameSite: "lax" });
+
+    const setCookieHeader = refreshResponse.headers.get("set-cookie");
+    if (setCookieHeader) {
+      response.headers.set("set-cookie", setCookieHeader);
+    }
+  } catch (error) {
+    console.error("Refresh token error in middleware:", error);
+    response.cookies.set("user", "null", { path: "/", sameSite: "lax" });
+  }
+
+  return response;
+}
+
+function redirectToLogin(request: NextRequest): NextResponse {
+  const segments = request.nextUrl.pathname.split("/");
+  const locale = routing.locales.includes(segments[1] as Locale)
+    ? segments[1]
+    : "";
+  const redirectUrl = new URL(
+    locale ? `/${locale}/auth/login` : "/auth/login",
+    request.url,
+  );
+  return NextResponse.redirect(redirectUrl);
 }
 
 export const config = {

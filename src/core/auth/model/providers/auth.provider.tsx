@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     refetchOnWindowFocus: false,
     retry: false,
     queryFn: async () => {
-      const response = await fetch(`${API_URL}/auth/me`, {
+      const response = await fetch(`${API_URL}/auth/profile`, {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
