@@ -1,17 +1,15 @@
-"use client";
-
 import { User, UserAvatar } from "@/src/entity/user";
 import { PAGES_CONFIG } from "@/src/shared/configs/pages";
 import { Link } from "@/src/shared/i18n";
 import { Button } from "@/src/shared/ui";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 interface HeaderAuthProps {
   user: User | null;
 }
 
-export const HeaderAuth = ({ user }: HeaderAuthProps) => {
-  const t = useTranslations();
+export const HeaderAuth = async ({ user }: HeaderAuthProps) => {
+  const t = await getTranslations();
 
   if (user) {
     return (
@@ -21,7 +19,7 @@ export const HeaderAuth = ({ user }: HeaderAuthProps) => {
       >
         <UserAvatar
           avatarUrl={user.avatarUrl}
-          fallback={user.username.slice(0, 2).toUpperCase()}
+          fallback={user.username?.slice(0, 2).toUpperCase()}
         />
       </Link>
     );

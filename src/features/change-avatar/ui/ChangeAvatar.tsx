@@ -43,7 +43,9 @@ export const ChangeAvatar = ({ user }: ChangeAvatarProps) => {
             {t("upload_button")}
           </Button>
           <Button
-            disabled={isUploading || isDeletingAvatar || !user?.avatarUrl}
+            disabled={Boolean(
+              isUploading || isDeletingAvatar || !user?.avatarUrl,
+            )}
             size="sm"
             variant="outline"
             onClick={() => deleteAvatar()}
