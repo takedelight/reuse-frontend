@@ -9,6 +9,7 @@ import {
   Label,
   Switch,
 } from "@/src/shared/ui";
+import { ProfileDangerZone } from "@/src/widgets/profile/profile-danger-zone";
 import { ProfileInfo } from "@/src/widgets/profile/profile-info";
 
 export default function SettingsPage() {
@@ -87,30 +88,7 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card className="border-destructive/30 bg-destructive/5">
-        <CardHeader>
-          <CardTitle className="text-destructive">Danger Zone</CardTitle>
-          <CardDescription>
-            Irreversible and destructive actions for your platform account.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="flex flex-col gap-0.5">
-              <span className="text-sm font-semibold text-foreground">
-                Delete Account
-              </span>
-              <span className="text-xs text-muted-foreground">
-                Permanently remove your profile, subscription details, and all
-                completed course progress.
-              </span>
-            </div>
-            <Button variant="destructive" className="w-fit shrink-0">
-              Delete Account
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      <ProfileDangerZone />
     </div>
   );
 }
