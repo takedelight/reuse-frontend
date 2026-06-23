@@ -130,11 +130,17 @@
       },
       "danger_zone": {
         "title": "Danger Zone",
-        "description": "Irreversible and destructive actions for your platform account.",
+        "description": "Irreversible  actions for your platform account.",
         "delete_account": {
           "label": "Delete Account",
           "description": "Permanently remove your profile, subscription details, and all completed course progress.",
-          "submit_button": "Delete Account"
+          "submit_button": "Delete Account",
+          "modal": {
+            "title": "Are you absolutely sure?",
+            "description": "This action cannot be undone. This will permanently delete your account and remove all your data from our servers.",
+            "cancel_button": "Cancel",
+            "confirm_button": "Yes, delete account"
+          }
         }
       }
     }
@@ -178,7 +184,8 @@
       "user_already_exists": "An account with this email address already exists.",
       "invalid_file_type": "Invalid file type. Please upload a JPG, GIF, or PNG image.",
       "file_too_large": "File size exceeds the limit. Please upload an image smaller than 2MB.",
-      "avatar_upload_failed": "Failed to upload avatar. Please try again."
+      "avatar_upload_failed": "Failed to upload avatar. Please try again.",
+      "account_delete_failed": "Failed to delete account. Please try again."
     }
   },
   "toast": {
@@ -192,7 +199,8 @@
       "social_links_update_success": "Social links updated successfully!",
       "avatar_upload_success": "Avatar uploaded successfully!",
       "avatar_delete_success": "Avatar removed successfully!",
-      "preferences_update_success": "Preferences updated successfully!"
+      "preferences_update_success": "Preferences updated successfully!",
+      "account_delete_success": "Your account has been permanently deleted."
     }
   },
   "validation": {
