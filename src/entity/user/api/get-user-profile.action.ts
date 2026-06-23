@@ -2,7 +2,7 @@
 
 import { API_URL } from "@/src/shared/constants";
 import { cookies } from "next/headers";
-import { User } from "../schemas/user.schema";
+import { User } from "../model/schemas/user.schema";
 
 export async function getUserProfile(): Promise<User | null> {
   try {

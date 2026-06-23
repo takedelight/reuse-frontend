@@ -11,6 +11,17 @@ import {
 } from "@/src/shared/ui";
 import { ProfileDangerZone } from "@/src/widgets/profile/profile-danger-zone";
 import { ProfileInfo } from "@/src/widgets/profile/profile-info";
+import { type Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("profile.settings.page");
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default function SettingsPage() {
   return (
