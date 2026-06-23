@@ -1,4 +1,7 @@
-import { ChangeAvatar } from "@/src/features/change-avatar";
+import {
+  ChangeAvatar,
+  ChangeAvatarSkeleton,
+} from "@/src/features/change-avatar";
 import { UpdateProfileForm } from "@/src/features/update-profile-info";
 import {
   Card,
@@ -9,6 +12,7 @@ import {
 } from "@/src/shared/ui";
 import { getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
 
 export const ProfileInfo = async () => {
   const t = await getTranslations("profile.settings.profile_info");
@@ -24,7 +28,9 @@ export const ProfileInfo = async () => {
         <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-6">
-        <ChangeAvatar user={user} />
+        <Suspense fallback={<ChangeAvatarSkeleton />}>
+          <ChangeAvatar user={user} />
+        </Suspense>
 
         <UpdateProfileForm initialUser={user} />
       </CardContent>
