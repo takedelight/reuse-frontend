@@ -110,6 +110,7 @@ export const UpdateProfileForm = ({ initialUser }: UpdateProfileFormProps) => {
                     )}
                     className="resize-none  h-28"
                     {...field}
+                    maxLength={BIO_MAX_LENGTH}
                     value={field.value || ""}
                   />
                   <span className="text-xs absolute bottom-1 right-2 text-muted-foreground">
