@@ -10,7 +10,7 @@ export async function changeAvatarAction(file: File) {
 
   const accessToken = cookieStore.get("accessToken")?.value;
 
-  const response = await fetch(`${API_URL}/user/upload-url`, {
+  const response = await fetch(`${API_URL}/profile/upload-url`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export async function confirmAvatarUpload(key: string) {
 
   const accessToken = cookieStore.get("accessToken")?.value;
 
-  const response = await fetch(`${API_URL}/user/confirm`, {
+  const response = await fetch(`${API_URL}/profile/confirm`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

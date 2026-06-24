@@ -11,7 +11,7 @@ export async function updateUserAction(data: UpdateUserInput) {
 
   const accessToken = cookieStore.get("accessToken")?.value;
 
-  const response = await fetch(`${API_URL}/user`, {
+  const response = await fetch(`${API_URL}/profile`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
