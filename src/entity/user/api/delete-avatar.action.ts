@@ -10,7 +10,7 @@ export async function deleteAvatarAction() {
 
   const accessToken = cookieStore.get("accessToken")?.value;
 
-  const response = await fetch(`${API_URL}/user/avatar`, {
+  const response = await fetch(`${API_URL}/profile/avatar`, {
     method: "DELETE",
     headers: {
       Cookie: `accessToken=${accessToken}`,
@@ -21,8 +21,6 @@ export async function deleteAvatarAction() {
   if (!response.ok) {
     throw new Error(responseData.message || "Failed to delete avatar");
   }
-
-  console.log("@@responseData", responseData);
 
   cookieStore.set("user", JSON.stringify(responseData), {
     path: "/",

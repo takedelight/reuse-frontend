@@ -10,7 +10,7 @@ export async function getUserProfile(): Promise<User | null> {
 
     const cookieStore = await cookies();
 
-    const response = await fetch(`${API_URL}/auth/me`, {
+    const response = await fetch(`${API_URL}/profile`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
