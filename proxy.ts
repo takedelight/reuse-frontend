@@ -17,6 +17,17 @@ export default async function proxy(request: NextRequest) {
   const refreshToken = request.cookies.get("refreshToken")?.value;
   const { pathname } = request.nextUrl;
 
+  const userAgent = request.headers.get("user-agent") || "";
+  const clientIp =
+    request.headers.get("x-forwarded-for") ||
+    request.headers.get("x-real-ip") ||
+    "";
+
+  const clientHeaders = {
+    "User-Agent": userAgent,
+    "X-Forwarded-For": clientIp,
+  };
+
   const isProfileRoute = isProtected(pathname);
   const response = intlMiddleware(request);
 
@@ -27,7 +38,11 @@ export default async function proxy(request: NextRequest) {
   }
 
   if (!accessToken && refreshToken) {
-    const refreshRes = await handleRefresh(refreshToken, response);
+    const refreshRes = await handleRefresh(
+      refreshToken,
+      response,
+      clientHeaders,
+    );
     if (isProfileRoute && refreshRes.cookies.get("user")?.value === "null") {
       return redirectToLogin(request);
     }
@@ -38,11 +53,16 @@ export default async function proxy(request: NextRequest) {
     const userResponse = await fetch(`${API_URL}/auth/profile`, {
       headers: {
         Cookie: `accessToken=${accessToken}`,
+        ...clientHeaders,
       },
     });
 
     if (userResponse.status === 401 && refreshToken) {
-      const refreshRes = await handleRefresh(refreshToken, response);
+      const refreshRes = await handleRefresh(
+        refreshToken,
+        response,
+        clientHeaders,
+      );
       if (isProfileRoute && refreshRes.cookies.get("user")?.value === "null") {
         return redirectToLogin(request);
       }
@@ -71,12 +91,14 @@ export default async function proxy(request: NextRequest) {
 async function handleRefresh(
   refreshToken: string,
   response: NextResponse,
+  clientHeaders: Record<string, string>,
 ): Promise<NextResponse> {
   try {
     const refreshResponse = await fetch(`${API_URL}/auth/refresh`, {
       method: "POST",
       headers: {
         Cookie: `refreshToken=${refreshToken}`,
+        ...clientHeaders,
       },
     });
 
