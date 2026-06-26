@@ -17,7 +17,7 @@ export const Header = async () => {
 
   return (
     <header className=" p-2 mb-5">
-      <nav className="container mx-auto flex items-center justify-between border border-foreground/10 bg-background/95 backdrop-blur-md px-4 py-3 rounded-2xl ">
+      <nav className="container mx-auto flex items-center justify-between border  dark:bg-background/95 border-card bg-white backdrop-blur-md px-4 py-3 rounded-2xl ">
         <Logo />
 
         <ul className="hidden md:flex items-center gap-10">
