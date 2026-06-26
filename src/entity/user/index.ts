@@ -3,6 +3,7 @@ export { UserAvatar } from "./ui/UserAvatar";
 export { UserSummary } from "./ui/UserSummary";
 
 export { deleteAvatarAction } from "./api/delete-avatar.action";
+export { deleteProfileAction } from "./api/delete-profile.action";
 export { getUserProfile } from "./api/get-user-profile.action";
 export { updateUserAction } from "./api/update-user.action";
 export * from "./model/const";
