@@ -17,11 +17,15 @@ interface LayoutProps {
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+  preload: false,
 });
 
 const onest = Onest({
   subsets: ["cyrillic"],
   variable: "--font-onest",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {

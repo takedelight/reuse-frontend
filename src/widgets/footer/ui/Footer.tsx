@@ -1,18 +1,16 @@
-"use client";
-
 import { PAGES_CONFIG } from "@/src/shared/configs/pages";
 import { Link } from "@/src/shared/i18n";
 import { Button } from "@/src/shared/ui";
 import { RiDiscordFill, RiGithubFill, RiTelegram2Fill } from "@remixicon/react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { FOOTER_LEGAL_LINKS, FOOTER_NAV_LINKS } from "../model/const";
 
-export const Footer = () => {
-  const t = useTranslations("footer");
+export const Footer = async () => {
+  const t = await getTranslations("footer");
 
   return (
-    <footer className=" px-1 z-50 py-4 mt-5 w-full ">
-      <nav className="container border border-foreground/10 bg-background/60 backdrop-blur-3xl p-4  opacity-90 rounded-2xl mx-auto flex flex-col md:flex-row md:items-start justify-between  gap-8 md:gap-4">
+    <footer className=" px-1 z-50 py-4  mt-5 w-full ">
+      <nav className="container border border-foreground/10 bg-white dark:bg-background backdrop-blur-3xl p-4 rounded-2xl mx-auto flex flex-col md:flex-row md:items-start justify-between  gap-8 md:gap-4">
         <div className="max-w-sm flex flex-col gap-4">
           <Link
             href={PAGES_CONFIG.HOME}
