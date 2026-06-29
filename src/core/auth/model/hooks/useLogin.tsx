@@ -1,21 +1,19 @@
 "use client";
 
-import { API_URL } from "@/src/shared/constants";
 import { useRouter } from "@/src/shared/i18n";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { loginAction } from "../../api/login.action";
 import { loginSchema, type LoginSchemaInput } from "../schemas/login.schema";
 
 export const useLogin = () => {
   const t = useTranslations();
 
   const router = useRouter();
-
-  const queryClient = useQueryClient();
 
   const form = useForm<LoginSchemaInput>({
     resolver: zodResolver(loginSchema),
@@ -33,33 +31,9 @@ export const useLogin = () => {
 
   const registerMutation = useMutation({
     mutationKey: ["login"],
-    mutationFn: async (data: LoginSchemaInput) => {
-      const response = await fetch(`${API_URL}/auth/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        let errorKey = "errors.server.unknown_error";
-        try {
-          const result = await response.json();
-          errorKey = Array.isArray(result.message)
-            ? result.message[0]
-            : result.message || errorKey;
-        } catch {}
-        throw new Error(errorKey);
-      }
-
-      const text = await response.text();
-      return text ? JSON.parse(text) : {};
-    },
+    mutationFn: loginAction,
     onSuccess: () => {
       router.push("/");
-      queryClient.invalidateQueries({ queryKey: ["check-auth"] });
       toast.success(t("toast.auth.success_login"));
     },
     onError: (error: unknown) => {

@@ -1,13 +1,11 @@
-"use client";
-
-import { useAuth } from "@/src/core/auth";
 import { UserSummary } from "@/src/entity/user";
 import { Card, CardContent, CardHeader } from "@/src/shared/ui";
+import { cookies } from "next/headers";
 
-export const ProfileCard = () => {
-  const { values } = useAuth();
-  const { user } = values;
-
+export const ProfileCard = async () => {
+  const user = (await cookies()).get("user")?.value
+    ? JSON.parse((await cookies()).get("user")?.value as string)
+    : null;
   return (
     <Card className="w-full">
       <CardHeader className="border-b">

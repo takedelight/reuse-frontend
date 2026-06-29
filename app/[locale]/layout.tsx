@@ -1,4 +1,3 @@
-import { AuthProvider } from "@/src/core/auth";
 import { ThemeProvider } from "@/src/core/theme";
 import { routing } from "@/src/shared/i18n/routing";
 import { cn } from "@/src/shared/lib";
@@ -18,11 +17,15 @@ interface LayoutProps {
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+  preload: false,
 });
 
 const onest = Onest({
   subsets: ["cyrillic"],
   variable: "--font-onest",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -59,10 +62,8 @@ export default async function RootLayout({ children, params }: LayoutProps) {
         >
           <NextIntlClientProvider>
             <QueryProvider>
-              <AuthProvider>
-                <Toaster />
-                {children}
-              </AuthProvider>
+              <Toaster />
+              {children}
             </QueryProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
