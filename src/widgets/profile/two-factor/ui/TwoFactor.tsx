@@ -1,11 +1,11 @@
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
   Label,
-  Switch,
 } from "@/src/shared/ui";
 import { RiShieldKeyholeLine } from "@remixicon/react";
 import { getTranslations } from "next-intl/server";
@@ -30,7 +30,7 @@ export const TwoFactor = async () => {
               {t("app_email_codes.description")}
             </span>
           </div>
-          <Switch />
+          <Button variant="outline">{t("app_email_codes.enable")}</Button>
         </div>
       </CardContent>
     </Card>

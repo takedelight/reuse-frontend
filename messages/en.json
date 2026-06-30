@@ -178,27 +178,13 @@
         "description": "Add an extra layer of security to your account by requiring more than just a password.",
         "app_email_codes": {
           "label": "Enable Two-Factor Authentication (2FA)",
-          "description": "Secure your account with 2FA verification codes sent to your device or email."
+          "description": "Secure your account with 2FA verification codes sent to your device or email.",
+          "enable": "Enable",
+          "disable": "Disable"
         }
       }
     },
-    "footer": {
-      "nav": {
-        "links": {
-          "title": "Links",
-          "library": "Library",
-          "blog": "Blog",
-          "learn": "Knowledge Base",
-          "quiz": "Quizzes"
-        },
-        "legal": {
-          "title": "Policies & Terms",
-          "privacy": "Privacy Policy",
-          "terms": "Terms of Service",
-          "cookies": "Cookie Policy"
-        }
-      }
-    },
+
     "errors": {
       "client": {
         "invalid_username": {
@@ -254,6 +240,23 @@
           "min_length": "Bio must be at least 3 characters long.",
           "max_length": "Bio cannot exceed 300 characters."
         }
+      }
+    }
+  },
+  "footer": {
+    "nav": {
+      "links": {
+        "title": "Links",
+        "library": "Library",
+        "blog": "Blog",
+        "learn": "Knowledge Base",
+        "quiz": "Quizzes"
+      },
+      "legal": {
+        "title": "Policies & Terms",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "cookies": "Cookie Policy"
       }
     }
   }
