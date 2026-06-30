@@ -13,3 +13,5 @@ export {
   changeAvatarAction,
   confirmAvatarUpload,
 } from "./api/change-avatar.action";
+
+export { getCurrentUser } from "./model/helpers/get-current-user.helper";

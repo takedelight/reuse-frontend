@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/src/entity/user";
 import {
   ChangeAvatar,
   ChangeAvatarSkeleton,
@@ -11,15 +12,12 @@ import {
   CardTitle,
 } from "@/src/shared/ui";
 import { getTranslations } from "next-intl/server";
-import { cookies } from "next/headers";
 import { Suspense } from "react";
 
 export const ProfileInfo = async () => {
   const t = await getTranslations("profile.settings.profile_info");
 
-  const user = (await cookies()).get("user")?.value
-    ? JSON.parse((await cookies()).get("user")?.value as string)
-    : null;
+  const user = await getCurrentUser();
 
   return (
     <Card>
