@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/src/entity/user";
 import { ToggleLanguage } from "@/src/features/toggle-language";
 import { Link } from "@/src/shared/i18n";
 import { Logo } from "@/src/shared/ui";
@@ -5,16 +6,12 @@ import { HEADER_NAV_LINKS } from "@/src/widgets/header/model/const";
 import { HeaderDrawer } from "@/src/widgets/header/ui/HeaderDrawer";
 import { ToggleTheme } from "@/src/widgets/header/ui/ToggleTheme";
 import { getTranslations } from "next-intl/server";
-import { cookies } from "next/headers";
 import { HeaderAuth } from "./HeaderAuth";
 
 export const Header = async () => {
   const t = await getTranslations();
 
-  const user = (await cookies()).get("user")?.value
-    ? JSON.parse((await cookies()).get("user")?.value as string)
-    : null;
-
+  const user = await getCurrentUser();
   return (
     <header className=" p-2 mb-5">
       <nav className="container mx-auto flex items-center justify-between border  dark:bg-background/95 border-card bg-white backdrop-blur-md px-4 py-3 rounded-2xl ">
