@@ -15,7 +15,7 @@ interface SessionItemProps {
 }
 
 const renderBrowserIcon = (browserName: string | null | undefined) => {
-  const className = "text-2xl text-muted-foreground mt-0.5 shrink-0";
+  const className = "text-2xl text-muted-foreground  shrink-0";
 
   if (!browserName) return <RiGlobalLine className={className} />;
 

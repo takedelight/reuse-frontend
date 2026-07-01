@@ -7,9 +7,9 @@ import {
   CardTitle,
   Input,
   Label,
-  Switch,
 } from "@/src/shared/ui";
 import { SessionsList } from "@/src/widgets/profile/sessions-list";
+import { TwoFactor } from "@/src/widgets/profile/two-factor";
 
 export default function SecurityPage() {
   return (
@@ -46,30 +46,7 @@ export default function SecurityPage() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Two-Factor Authentication</CardTitle>
-          <CardDescription>
-            Add an extra layer of security to your account by requiring more
-            than just a password.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <div className="flex items-center justify-between rounded-lg border p-4">
-            <div className="flex flex-col gap-0.5">
-              <Label htmlFor="2fa-email" className="flex items-center gap-2">
-                <i className="ri-mail-lock-line text-lg leading-none" />{" "}
-                Authenticator App / Email Codes
-              </Label>
-              <span className="text-xs text-muted-foreground">
-                Secure your account with 2FA verification codes sent to your
-                device or email.
-              </span>
-            </div>
-            <Switch id="2fa-email" />
-          </div>
-        </CardContent>
-      </Card>
+      <TwoFactor />
 
       <SessionsList />
     </div>
