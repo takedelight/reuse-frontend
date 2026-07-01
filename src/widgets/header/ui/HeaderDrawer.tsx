@@ -31,6 +31,7 @@ import {
   HEADER_NAV_LINKS,
 } from "@/src/widgets/header/model/const";
 import { useTranslations } from "next-intl";
+import { SignOut } from "@/src/features/sign-out";
 
 export const HeaderDrawer = () => {
   const t = useTranslations();
@@ -180,10 +181,10 @@ export const HeaderDrawer = () => {
 
         <div className="border-t p-4">
           {isAuthenticated ? (
-            <Button variant="destructive" className="w-full gap-2">
+            <SignOut variant="destructive" className="w-full gap-2">
               <RiLogoutBoxRLine className="size-4" />
               {t("auth.links.logout")}
-            </Button>
+            </SignOut>
           ) : (
             <div className="flex flex-col gap-2">
               <Button asChild>

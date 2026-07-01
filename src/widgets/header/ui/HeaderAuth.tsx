@@ -1,8 +1,9 @@
-import { User, UserAvatar } from "@/src/entity/user";
+import { User } from "@/src/entity/user";
 import { PAGES_CONFIG } from "@/src/shared/configs/pages";
 import { Link } from "@/src/shared/i18n";
 import { Button } from "@/src/shared/ui";
 import { getTranslations } from "next-intl/server";
+import { UserMenu } from "./UserMenu";
 
 interface HeaderAuthProps {
   user: User | null;
@@ -12,17 +13,7 @@ export const HeaderAuth = async ({ user }: HeaderAuthProps) => {
   const t = await getTranslations();
 
   if (user) {
-    return (
-      <Link
-        href={PAGES_CONFIG.PROFILE.HOME}
-        className="hidden lg:flex items-center gap-2 rounded-full outline-none"
-      >
-        <UserAvatar
-          avatarUrl={user.avatarUrl}
-          fallback={user.username?.slice(0, 2).toUpperCase()}
-        />
-      </Link>
-    );
+    return <UserMenu user={user} />;
   }
 
   return (
