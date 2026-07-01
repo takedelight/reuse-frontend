@@ -34,7 +34,7 @@ export async function loginAction(data: LoginSchemaInput) {
     const parsedCookies = cookie.parseCookie(setCookieHeader);
 
     if (parsedCookies.access_token) {
-      cookieStore.set("access_token", parsedCookies.access_token, {
+      cookieStore.set("accessToken", parsedCookies.access_token, {
         path: "/",
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
@@ -43,7 +43,7 @@ export async function loginAction(data: LoginSchemaInput) {
     }
 
     if (parsedCookies.refresh_token) {
-      cookieStore.set("refresh_token", parsedCookies.refresh_token, {
+      cookieStore.set("refreshToken", parsedCookies.refresh_token, {
         path: "/",
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",

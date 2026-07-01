@@ -1,3 +1,4 @@
+import * as cookie from "cookie";
 import createMiddleware from "next-intl/middleware";
 import { NextResponse, type NextRequest } from "next/server";
 import { API_URL } from "./src/shared/constants";
@@ -82,7 +83,9 @@ export default async function proxy(request: NextRequest) {
     });
   } catch (error) {
     console.error("Profile check error in middleware:", error);
+    response.cookies.set("user", "null", { path: "/", sameSite: "lax" });
     if (isProfileRoute) return redirectToLogin(request);
+    return response;
   }
 
   return response;
@@ -109,11 +112,25 @@ async function handleRefresh(
       return response;
     }
 
-    response.cookies.set("user", "true", { path: "/", sameSite: "lax" });
+    response.cookies.set("user", "null", { path: "/", sameSite: "lax" });
 
     const setCookieHeader = refreshResponse.headers.get("set-cookie");
     if (setCookieHeader) {
-      response.headers.set("set-cookie", setCookieHeader);
+      const parsed = cookie.parseCookie(setCookieHeader);
+      if (parsed.access_token) {
+        response.cookies.set("accessToken", parsed.access_token, {
+          path: "/",
+          httpOnly: true,
+          sameSite: "lax",
+        });
+      }
+      if (parsed.refresh_token) {
+        response.cookies.set("refreshToken", parsed.refresh_token, {
+          path: "/",
+          httpOnly: true,
+          sameSite: "lax",
+        });
+      }
     }
   } catch (error) {
     console.error("Refresh token error in middleware:", error);
@@ -136,5 +153,6 @@ function redirectToLogin(request: NextRequest): NextResponse {
 }
 
 export const config = {
-  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+  matcher:
+    "/((?!api|trpc|_next/static|_next/image|_vercel|favicon\\.ico|sitemap\\.xml|robots\\.txt).*)",
 };
